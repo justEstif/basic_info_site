@@ -4,13 +4,13 @@ import path from "path";
 
 const PORT = process.env.PORT || 8080;
 
-const server = http.createServer((req, res) => {
-  if (req.url) {
-    getFileData(req.url);
-  }
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write("Hello World");
+const server = http.createServer(async (req, res) => {
+  if (req.url && req.url !== "/favicon.ico") {
+    const { fileData, statusCode } = await getResponse(req.url);
+    res.writeHead(statusCode, { "Content-Type": "text/html" });
+    res.write(fileData);
   res.end();
+  }
 });
 
 server.listen(PORT, () => {
