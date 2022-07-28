@@ -1,11 +1,11 @@
 {
-  "name": "Project: Basic Informational Site",
+  "name": "project-basic-informational-site",
   "version": "1.0.0",
   "description": "A very basic informational site that contains 4 pages: index, about, contact-me and 404 using NodeJS.",
   "main": "index.js",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon dist/index.js"
+    "dev": "nodemon --inspect dist/index.js"
   },
   "repository": {
     "type": "git",
