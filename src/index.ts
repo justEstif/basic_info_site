@@ -1,14 +1,15 @@
-// import fs from "fs"
 import http from "http"
+import fs from "fs/promises"
+import path from "path"
 
-const port = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080
 
-const server = http.createServer((_, res) => {
-  res.statusCode = 200
-  res.setHeader("Content-Type", "text/html")
-  res.end("<h1>Hello, World!</h1>")
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" })
+  res.write("Hello World")
+  res.end()
 })
 
-server.listen(port, () => {
-  console.log(`Server running at port ${port}`)
+server.listen(PORT, () => {
+  console.log(`Server running at port ${PORT}`)
 })
