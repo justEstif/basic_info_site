@@ -9,7 +9,7 @@ const server = http.createServer(async (req, res) => {
     const { fileData, statusCode } = await getResponse(req.url);
     res.writeHead(statusCode, { "Content-Type": "text/html" });
     res.write(fileData);
-  res.end();
+    res.end();
   }
 });
 
