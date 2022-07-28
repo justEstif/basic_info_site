@@ -26,3 +26,25 @@ const getFilePath = (url: string) => {
   const filePath = path.join(__dirname, "/public", `${fileName}.html`);
   return filePath;
 };
+
+const getFileData = async (filePath: string) => {
+  try {
+    const fileData = await fs.readFile(filePath, "utf-8");
+    const statusCode = 200;
+    return { fileData, statusCode };
+  } catch (err) {
+    const filePath = path.join(__dirname, "/public", `404.html`);
+    try {
+      const fileData = await fs.readFile(filePath, "utf-8");
+      const statusCode = 404;
+      return { fileData, statusCode };
+    } catch (err) {
+      const fileData = "<h1>Server Error</h1>";
+      const statusCode = 500;
+      return {
+        fileData,
+        statusCode,
+      };
+    }
+  }
+};
